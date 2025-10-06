@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercícios de Python - POO</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #3498db, #8e44ad);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .description {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .category {
+            background: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 25px 0 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .category-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        .exercise {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #8e44ad;
+        }
+        
+        .exercise h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .exercise-number {
+            background: #3498db;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .exercise p {
+            margin-bottom: 15px;
+            color: #34495e;
+        }
+        
+        .code-area {
+            width: 100%;
+            min-height: 100px;
+            font-family: 'Courier New', monospace;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            background: #fefefe;
+        }
+        
+        .btn-check {
+            background: #2ecc71;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+            display: inline-flex;
+            align-items: center;
+            margin-right: 10px;
+        }
+        
+        .btn-check:hover {
+            background: #27ae60;
+        }
+        
+        .btn-show {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .btn-show:hover {
+            background: #2980b9;
+        }
+        
+        .btn-icon {
+            margin-right: 8px;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: flex;
+            align-items: center;
+        }
+        
+        .incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: flex;
+            align-items: center;
+        }
+        
+        .solution {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            background: #e8f4f8;
+            color: #2c3e50;
+            border: 1px solid #bde0fe;
+            display: none;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        
+        .result-icon {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .progress {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .progress-bar {
+            height: 20px;
+            background: #e9ecef;
+            border-radius: 10px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #2ecc71;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.5s;
+        }
+        
+        .progress-text {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .category {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Exercícios de Python - Programação Orientada a Objetos</h1>
+            <p class="description">Pratique conceitos de POO em Python com estes exercícios. Digite seu código e verifique se está correto!</p>
+        </header>
+        
+        <div class="category">
+            <span class="category-icon">🐍</span>
+            <h2>Classes e Objetos</h2>
+        </div>
+        
+        <div class="exercise" id="ex1">
+            <h3><span class="exercise-number">1</span> Classe Básica</h3>
+            <p>Crie uma classe chamada Pessoa com um método __init__ que recebe nome e idade.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(1)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(1)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Pessoa:
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+
+# Exemplo de uso
+p1 = Pessoa("João", 25)
+print(f"{p1.nome} tem {p1.idade} anos")</div>
+        </div>
+        
+        <div class="exercise" id="ex2">
+            <h3><span class="exercise-number">2</span> Método de Instância</h3>
+            <p>Adicione um método cumprimentar à classe Pessoa que retorne "Olá, meu nome é [nome]".</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(2)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(2)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Pessoa:
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+        
+    def cumprimentar(self):
+        return f"Olá, meu nome é {self.nome}"
+
+# Exemplo de uso
+p1 = Pessoa("Maria", 30)
+print(p1.cumprimentar())</div>
+        </div>
+        
+        <div class="exercise" id="ex3">
+            <h3><span class="exercise-number">3</span> Classe Carro</h3>
+            <p>Crie uma classe Carro com atributos marca, modelo e ano, e um método para exibir informações do carro.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(3)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(3)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Carro:
+    def __init__(self, marca, modelo, ano):
+        self.marca = marca
+        self.modelo = modelo
+        self.ano = ano
+        
+    def exibir_info(self):
+        return f"{self.marca} {self.modelo} ({self.ano})"
+
+# Exemplo de uso
+meu_carro = Carro("Toyota", "Corolla", 2020)
+print(meu_carro.exibir_info())</div>
+        </div>
+        
+        <div class="exercise" id="ex4">
+            <h3><span class="exercise-number">4</span> Atributos com Valores Padrão</h3>
+            <p>Crie uma classe ContaBancaria com atributos titular e saldo (com valor padrão 0).</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(4)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(4)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class ContaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.titular = titular
+        self.saldo = saldo
+        
+    def mostrar_saldo(self):
+        return f"Saldo: R$ {self.saldo:.2f}"
+
+# Exemplo de uso
+conta = ContaBancaria("Carlos")
+print(conta.mostrar_saldo())</div>
+        </div>
+        
+        <div class="exercise" id="ex5">
+            <h3><span class="exercise-number">5</span> Métodos para Modificar Atributos</h3>
+            <p>Adicione métodos depositar e sacar à classe ContaBancaria.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(5)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(5)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class ContaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.titular = titular
+        self.saldo = saldo
+        
+    def depositar(self, valor):
+        self.saldo += valor
+        return f"Depósito de R$ {valor:.2f} realizado."
+        
+    def sacar(self, valor):
+        if valor <= self.saldo:
+            self.saldo -= valor
+            return f"Saque de R$ {valor:.2f} realizado."
+        else:
+            return "Saldo insuficiente."
+            
+    def mostrar_saldo(self):
+        return f"Saldo: R$ {self.saldo:.2f}"
+
+# Exemplo de uso
+conta = ContaBancaria("Ana", 100)
+print(conta.depositar(50))
+print(conta.sacar(30))
+print(conta.mostrar_saldo())</div>
+        </div>
+        
+        <div class="category">
+            <span class="category-icon">🔍</span>
+            <h2>Encapsulamento</h2>
+        </div>
+        
+        <div class="exercise" id="ex6">
+            <h3><span class="exercise-number">6</span> Atributos Privados</h3>
+            <p>Modifique a classe ContaBancaria para tornar o saldo privado usando __.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(6)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(6)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class ContaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.titular = titular
+        self.__saldo = saldo  # Atributo privado
+        
+    def depositar(self, valor):
+        self.__saldo += valor
+        return f"Depósito de R$ {valor:.2f} realizado."
+        
+    def sacar(self, valor):
+        if valor <= self.__saldo:
+            self.__saldo -= valor
+            return f"Saque de R$ {valor:.2f} realizado."
+        else:
+            return "Saldo insuficiente."
+            
+    def mostrar_saldo(self):
+        return f"Saldo: R$ {self.__saldo:.2f}"
+
+# Exemplo de uso
+conta = ContaBancaria("Paula", 200)
+print(conta.mostrar_saldo())</div>
+        </div>
+        
+        <div class="exercise" id="ex7">
+            <h3><span class="exercise-number">7</span> Properties</h3>
+            <p>Use @property para criar uma propriedade saldo na classe ContaBancaria.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(7)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(7)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class ContaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.titular = titular
+        self.__saldo = saldo
+        
+    @property
+    def saldo(self):
+        return self.__saldo
+        
+    def depositar(self, valor):
+        self.__saldo += valor
+        return f"Depósito de R$ {valor:.2f} realizado."
+        
+    def sacar(self, valor):
+        if valor <= self.__saldo:
+            self.__saldo -= valor
+            return f"Saque de R$ {valor:.2f} realizado."
+        else:
+            return "Saldo insuficiente."
+
+# Exemplo de uso
+conta = ContaBancaria("Ricardo", 300)
+print(f"Saldo: R$ {conta.saldo:.2f}")  # Agora podemos acessar saldo como propriedade</div>
+        </div>
+        
+        <div class="exercise" id="ex8">
+            <h3><span class="exercise-number">8</span> Setter para Property</h3>
+            <p>Adicione um setter à propriedade saldo para validar valores negativos.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(8)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(8)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class ContaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.titular = titular
+        self.__saldo = saldo
+        
+    @property
+    def saldo(self):
+        return self.__saldo
+        
+    @saldo.setter
+    def saldo(self, valor):
+        if valor >= 0:
+            self.__saldo = valor
+        else:
+            print("Saldo não pode ser negativo!")
+        
+    def depositar(self, valor):
+        self.saldo += valor  # Usa o setter
+        return f"Depósito de R$ {valor:.2f} realizado."
+        
+    def sacar(self, valor):
+        if valor <= self.saldo:  # Usa o getter
+            self.saldo -= valor  # Usa o setter
+            return f"Saque de R$ {valor:.2f} realizado."
+        else:
+            return "Saldo insuficiente."
+
+# Exemplo de uso
+conta = ContaBancaria("Fernanda", 400)
+conta.saldo = -100  # Isso exibirá a mensagem de erro</div>
+        </div>
+        
+        <div class="exercise" id="ex9">
+            <h3><span class="exercise-number">9</span> Métodos Estáticos</h3>
+            <p>Adicione um método estático à classe ContaBancaria para validar CPF.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(9)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(9)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class ContaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.titular = titular
+        self.__saldo = saldo
+        
+    @staticmethod
+    def validar_cpf(cpf):
+        # Verificação simples de CPF (apenas para exemplo)
+        if len(cpf) == 11 and cpf.isdigit():
+            return True
+        return False
+        
+    @property
+    def saldo(self):
+        return self.__saldo
+        
+    # Restante da classe...
+
+# Exemplo de uso
+print(ContaBancaria.validar_cpf("12345678901"))  # True
+print(ContaBancaria.validar_cpf("123"))          # False</div>
+        </div>
+        
+        <div class="exercise" id="ex10">
+            <h3><span class="exercise-number">10</span> Métodos de Classe</h3>
+            <p>Adicione um método de classe para criar uma conta a partir de um dicionário.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(10)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(10)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class ContaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.titular = titular
+        self.__saldo = saldo
+        
+    @classmethod
+    def from_dict(cls, dados):
+        return cls(dados['titular'], dados['saldo'])
+        
+    @property
+    def saldo(self):
+        return self.__saldo
+        
+    # Restante da classe...
+
+# Exemplo de uso
+dados_conta = {'titular': 'Roberto', 'saldo': 500}
+conta = ContaBancaria.from_dict(dados_conta)
+print(f"Titular: {conta.titular}, Saldo: R$ {conta.saldo:.2f}")</div>
+        </div>
+        
+        <div class="category">
+            <span class="category-icon">🔗</span>
+            <h2>Herança</h2>
+        </div>
+        
+        <div class="exercise" id="ex11">
+            <h3><span class="exercise-number">11</span> Herança Básica</h3>
+            <p>Crie uma classe Animal e uma classe Cachorro que herda de Animal.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(11)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(11)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Animal:
+    def __init__(self, nome):
+        self.nome = nome
+        
+    def fazer_som(self):
+        return "Som genérico de animal"
+
+class Cachorro(Animal):
+    def fazer_som(self):
+        return "Au Au!"
+
+# Exemplo de uso
+animal = Animal("Generic")
+cachorro = Cachorro("Rex")
+print(animal.fazer_som())   # "Som genérico de animal"
+print(cachorro.fazer_som()) # "Au Au!"</div>
+        </div>
+        
+        <div class="exercise" id="ex12">
+            <h3><span class="exercise-number">12</span> Chamando Método da Classe Pai</h3>
+            <p>Use super() para chamar o método __init__ da classe pai em Cachorro.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(12)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(12)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Animal:
+    def __init__(self, nome):
+        self.nome = nome
+        
+    def fazer_som(self):
+        return "Som genérico de animal"
+
+class Cachorro(Animal):
+    def __init__(self, nome, raca):
+        super().__init__(nome)  # Chama o __init__ da classe pai
+        self.raca = raca
+        
+    def fazer_som(self):
+        return "Au Au!"
+
+# Exemplo de uso
+cachorro = Cachorro("Rex", "Labrador")
+print(f"{cachorro.nome} é da raça {cachorro.raca}")</div>
+        </div>
+        
+        <div class="exercise" id="ex13">
+            <h3><span class="exercise-number">13</span> Herança Múltipla</h3>
+            <p>Crie duas classes (Voavel e Nadavel) e uma classe Pato que herda de ambas.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(13)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(13)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Voavel:
+    def voar(self):
+        return "Voando..."
+        
+class Nadavel:
+    def nadar(self):
+        return "Nadando..."
+        
+class Pato(Voavel, Nadavel):
+    def __init__(self, nome):
+        self.nome = nome
+        
+    def fazer_som(self):
+        return "Quack!"
+
+# Exemplo de uso
+pato = Pato("Donald")
+print(pato.voar())   # "Voando..."
+print(pato.nadar())  # "Nadando..."
+print(pato.fazer_som())  # "Quack!"</div>
+        </div>
+        
+        <div class="exercise" id="ex14">
+            <h3><span class="exercise-number">14</span> Método da Classe Pai com super()</h3>
+            <p>Use super() para chamar o método fazer_som da classe pai em Cachorro.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(14)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(14)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Animal:
+    def __init__(self, nome):
+        self.nome = nome
+        
+    def fazer_som(self):
+        return "Som genérico de animal"
+
+class Cachorro(Animal):
+    def __init__(self, nome, raca):
+        super().__init__(nome)
+        self.raca = raca
+        
+    def fazer_som(self):
+        som_pai = super().fazer_som()
+        return f"{som_pai} Mas eu faço: Au Au!"
+
+# Exemplo de uso
+cachorro = Cachorro("Rex", "Labrador")
+print(cachorro.fazer_som())</div>
+        </div>
+        
+        <div class="exercise" id="ex15">
+            <h3><span class="exercise-number">15</span> Verificação de Tipo</h3>
+            <p>Use isinstance() e issubclass() para verificar tipos e herança.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(15)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(15)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Animal:
+    def __init__(self, nome):
+        self.nome = nome
+
+class Cachorro(Animal):
+    def __init__(self, nome, raca):
+        super().__init__(nome)
+        self.raca = raca
+
+# Exemplo de uso
+cachorro = Cachorro("Rex", "Labrador")
+
+# Verificações
+print(isinstance(cachorro, Cachorro))  # True
+print(isinstance(cachorro, Animal))    # True
+print(issubclass(Cachorro, Animal))    # True
+print(issubclass(Animal, Cachorro))    # False</div>
+        </div>
+        
+        <div class="category">
+            <span class="category-icon">🔄</span>
+            <h2>Polimorfismo e Métodos Especiais</h2>
+        </div>
+        
+        <div class="exercise" id="ex16">
+            <h3><span class="exercise-number">16</span> Método __str__</h3>
+            <p>Implemente o método __str__ na classe Pessoa para retornar uma representação em string.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(16)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(16)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Pessoa:
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+        
+    def __str__(self):
+        return f"Pessoa(nome={self.nome}, idade={self.idade})"
+
+# Exemplo de uso
+p = Pessoa("Carlos", 35)
+print(p)  # Isso chama automaticamente __str__</div>
+        </div>
+        
+        <div class="exercise" id="ex17">
+            <h3><span class="exercise-number">17</span> Método __repr__</h3>
+            <p>Implemente o método __repr__ na classe Pessoa para retornar uma representação oficial.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(17)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(17)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Pessoa:
+    def __init__(self, nome, idade):
+        self.nome = nome
+        self.idade = idade
+        
+    def __str__(self):
+        return f"{self.nome} ({self.idade} anos)"
+        
+    def __repr__(self):
+        return f"Pessoa('{self.nome}', {self.idade})"
+
+# Exemplo de uso
+p = Pessoa("Maria", 28)
+print(str(p))    # "Maria (28 anos)"
+print(repr(p))   # "Pessoa('Maria', 28)"</div>
+        </div>
+        
+        <div class="exercise" id="ex18">
+            <h3><span class="exercise-number">18</span> Método __add__</h3>
+            <p>Implemente o método __add__ na classe ContaBancaria para somar saldos.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(18)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(18)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class ContaBancaria:
+    def __init__(self, titular, saldo=0):
+        self.titular = titular
+        self.saldo = saldo
+        
+    def __add__(self, other):
+        if isinstance(other, ContaBancaria):
+            return self.saldo + other.saldo
+        return NotImplemented
+        
+    def __radd__(self, other):
+        if other == 0:
+            return self.saldo
+        return NotImplemented
+
+# Exemplo de uso
+conta1 = ContaBancaria("João", 100)
+conta2 = ContaBancaria("Maria", 200)
+soma_saldos = conta1 + conta2
+print(f"Soma dos saldos: R$ {soma_saldos:.2f}")</div>
+        </div>
+        
+        <div class="exercise" id="ex19">
+            <h3><span class="exercise-number">19</span> Método __len__</h3>
+            <p>Implemente o método __len__ na classe Produto para retornar o tamanho do nome.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(19)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(19)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">class Produto:
+    def __init__(self, nome, preco):
+        self.nome = nome
+        self.preco = preco
+        
+    def __len__(self):
+        return len(self.nome)
+
+# Exemplo de uso
+p = Produto("Notebook Gamer", 2500.00)
+print(f"Tamanho do nome: {len(p)} caracteres")</div>
+        </div>
+        
+        <div class="exercise" id="ex20">
+            <h3><span class="exercise-number">20</span> Classe Abstrata</h3>
+            <p>Crie uma classe abstrata Forma com método abstrato area() e implemente em classes derivadas.</p>
+            <textarea class="code-area" placeholder="Digite seu código aqui..."></textarea>
+            <button class="btn-check" onclick="checkExercise(20)"><span class="btn-icon">✓</span> Verificar</button>
+            <button class="btn-show" onclick="showSolution(20)"><span class="btn-icon">👁️</span> Mostrar Solução</button>
+            <div class="result"></div>
+            <div class="solution">from abc import ABC, abstractmethod
+
+class Forma(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+        
+class Retangulo(Forma):
+    def __init__(self, largura, altura):
+        self.largura = largura
+        self.altura = altura
+        
+    def area(self):
+        return self.largura * self.altura
+        
+class Circulo(Forma):
+    def __init__(self, raio):
+        self.raio = raio
+        
+    def area(self):
+        return 3.14159 * self.raio * self.raio
+
+# Exemplo de uso
+ret = Retangulo(5, 3)
+circ = Circulo(2)
+print(f"Área do retângulo: {ret.area()}")   # 15
+print(f"Área do círculo: {circ.area():.2f}") # 12.57</div>
+        </div>
+        
+        <div class="progress">
+            <h3>Seu Progresso</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <p class="progress-text" id="progress-text">0/20 exercícios concluídos</p>
+        </div>
+        
+        <footer>
+            <p>Exercícios de Python - POO - Desenvolvido para praticar Programação Orientada a Objetos</p>
+        </footer>
+    </div>
+
+    <script>
+        // Armazenar estado dos exercícios
+        const totalExercises = 20;
+        let completedExercises = 0;
+        const exerciseStatus = new Array(totalExercises + 1).fill(false);
+        
+        // Função para verificar os exercícios
+        function checkExercise(exNumber) {
+            const codeArea = document.querySelector(`#ex${exNumber} .code-area`);
+            const resultDiv = document.querySelector(`#ex${exNumber} .result`);
+            const code = codeArea.value.trim();
+            
+            // Verificação básica se o código foi inserido
+            if (!code) {
+                resultDiv.innerHTML = "<span class='result-icon'>❌</span> Por favor, digite seu código antes de verificar.";
+                resultDiv.className = "result incorrect";
+                resultDiv.style.display = "flex";
+                return;
+            }
+            
+            try {
+                // Verificação específica para cada exercício
+                let isValid = false;
+                let message = "";
+                
+                switch(exNumber) {
+                    case 1:
+                        isValid = code.includes("class") && code.includes("__init__") && code.includes("self");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você criou uma classe com método construtor!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'class Nome:' e defina __init__(self, ...).";
+                        break;
+                    case 2:
+                        isValid = code.includes("def ") && code.includes("self") && code.includes("return");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você adicionou um método de instância!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'def nome_metodo(self):' e retorne um valor.";
+                        break;
+                    case 3:
+                        isValid = code.includes("class") && code.includes("def ") && code.includes("return");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você criou uma classe com atributos e método!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Verifique se definiu atributos no __init__ e um método.";
+                        break;
+                    case 4:
+                        isValid = code.includes("=0") || code.includes("= 0");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você usou um valor padrão para o parâmetro!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'saldo=0' para definir um valor padrão.";
+                        break;
+                    case 5:
+                        isValid = code.includes("def depositar") && code.includes("def sacar");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você implementou métodos para modificar atributos!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Verifique se criou métodos depositar e sacar.";
+                        break;
+                    case 6:
+                        isValid = code.includes("__saldo");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você tornou o saldo privado usando __!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use '__saldo' para tornar o atributo privado.";
+                        break;
+                    case 7:
+                        isValid = code.includes("@property");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você usou @property para criar uma propriedade!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use '@property' antes do método saldo.";
+                        break;
+                    case 8:
+                        isValid = code.includes("@saldo.setter");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você implementou um setter para a propriedade!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use '@saldo.setter' antes do método setter.";
+                        break;
+                    case 9:
+                        isValid = code.includes("@staticmethod");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você criou um método estático!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use '@staticmethod' antes do método.";
+                        break;
+                    case 10:
+                        isValid = code.includes("@classmethod");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você implementou um método de classe!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use '@classmethod' antes do método.";
+                        break;
+                    case 11:
+                        isValid = code.includes("class Cachorro(Animal)");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você criou uma classe que herda de outra!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'class Filho(Pai):' para herança.";
+                        break;
+                    case 12:
+                        isValid = code.includes("super()");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você usou super() para chamar o método da classe pai!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'super().__init__(...)' no construtor.";
+                        break;
+                    case 13:
+                        isValid = code.includes("class Pato(Voavel, Nadavel)");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você implementou herança múltipla!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'class Classe(Pai1, Pai2):' para herança múltipla.";
+                        break;
+                    case 14:
+                        isValid = code.includes("super().fazer_som()");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você usou super() para chamar método da classe pai!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'super().metodo()' para chamar método da classe pai.";
+                        break;
+                    case 15:
+                        isValid = code.includes("isinstance") || code.includes("issubclass");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você usou isinstance ou issubclass!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use isinstance(objeto, Classe) ou issubclass(Classe1, Classe2).";
+                        break;
+                    case 16:
+                        isValid = code.includes("__str__");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você implementou o método __str__!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'def __str__(self):' para definir a representação em string.";
+                        break;
+                    case 17:
+                        isValid = code.includes("__repr__");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você implementou o método __repr__!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'def __repr__(self):' para definir a representação oficial.";
+                        break;
+                    case 18:
+                        isValid = code.includes("__add__");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você implementou o método __add__!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'def __add__(self, other):' para definir a adição.";
+                        break;
+                    case 19:
+                        isValid = code.includes("__len__");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você implementou o método __len__!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'def __len__(self):' para definir o comportamento de len().";
+                        break;
+                    case 20:
+                        isValid = code.includes("ABC") || code.includes("@abstractmethod");
+                        message = isValid ? 
+                            "<span class='result-icon'>✓</span> Correto! Você criou uma classe abstrata com método abstrato!" :
+                            "<span class='result-icon'>❌</span> Tente novamente. Use 'from abc import ABC, abstractmethod' e '@abstractmethod'.";
+                        break;
+                }
+                
+                if (isValid) {
+                    resultDiv.className = "result correct";
+                    // Marcar como concluído se não estava antes
+                    if (!exerciseStatus[exNumber]) {
+                        exerciseStatus[exNumber] = true;
+                        completedExercises++;
+                        updateProgress();
+                    }
+                } else {
+                    resultDiv.className = "result incorrect";
+                }
+                
+                resultDiv.innerHTML = message;
+                resultDiv.style.display = "flex";
+                
+            } catch (error) {
+                resultDiv.innerHTML = "<span class='result-icon'>❌</span> Erro: " + error.message;
+                resultDiv.className = "result incorrect";
+                resultDiv.style.display = "flex";
+            }
+        }
+        
+        // Função para mostrar a solução
+        function showSolution(exNumber) {
+            const solutionDiv = document.querySelector(`#ex${exNumber} .solution`);
+            solutionDiv.style.display = solutionDiv.style.display === 'block' ? 'none' : 'block';
+        }
+        
+        // Atualizar barra de progresso
+        function updateProgress() {
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const percentage = (completedExercises / totalExercises) * 100;
+            
+            progressFill.style.width = `${percentage}%`;
+            progressText.textContent = `${completedExercises}/${totalExercises} exercícios concluídos`;
+        }
+        
+        // Inicializar a barra de progresso
+        updateProgress();
+    </script>
+</body>
+</html>
